@@ -10,6 +10,15 @@ import java.util.Map;
 @Getter
 public class ProductFilter {
     private Specification<Product> spec;
+
+    public Specification<Product> getSpec() {
+        return spec;
+    }
+
+    public StringBuilder getFilterDefinition() {
+        return filterDefinition;
+    }
+
     private StringBuilder filterDefinition;
 
     public ProductFilter(Map<String, String> map) {
@@ -27,9 +36,14 @@ public class ProductFilter {
         }
         if (map.containsKey("s") && !map.get("s").isEmpty()) {
             String searchText = map.get("s");
-//            String result = searchText.substring(0, 1).toUpperCase() + searchText.substring(1).toLowerCase();
             spec = spec.and(ProductSpecifications.searchLike(searchText));
             filterDefinition.append("&s=").append(searchText);
         }
+        if (map.containsKey("category") && !map.get("category").isEmpty()) {
+            int categoryId = Integer.parseInt(map.get("category"));
+            spec = spec.and(ProductSpecifications.categoryEqual(categoryId));
+            filterDefinition.append("&category=").append(categoryId);
+        }
+
     }
 }

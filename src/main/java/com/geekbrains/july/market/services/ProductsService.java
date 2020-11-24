@@ -1,5 +1,6 @@
 package com.geekbrains.july.market.services;
 
+import com.geekbrains.july.market.entities.Category;
 import com.geekbrains.july.market.entities.Product;
 import com.geekbrains.july.market.exceptions.ProductNotFoundException;
 import com.geekbrains.july.market.repositories.ProductsRepository;
