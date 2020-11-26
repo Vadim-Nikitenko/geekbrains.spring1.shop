@@ -1,5 +1,6 @@
 package com.geekbrains.july.market.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,13 +24,14 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "categories_products",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Product> products;
+    private List<Category> categories;
 
     public Product(Long id, String title, int price) {
         this.id = id;
@@ -41,8 +43,8 @@ public class Product {
         this.id = id;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     @Override
