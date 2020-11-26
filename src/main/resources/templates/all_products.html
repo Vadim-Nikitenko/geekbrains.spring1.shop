@@ -29,10 +29,14 @@
             <input type="number" th:value="${param.max_price != null ? param.max_price : ''}" class="form-control"
                    name="max_price">
         </div>
+        <div class="form-group">
+            <label>Категория</label>
+            <input type="number" th:value="${param.category != null ? param.category : ''}" class="form-control"
+                   name="category">
+        </div>
         <button type="submit" class="btn btn-primary">Применить</button>
         <a class="btn btn-secondary" th:href="@{'/products'}">Сбросить</a>
     </form>
-
 
     <form th:accept="@{'/products'}" method="get" class="mb-3">
         <div class="form-group">
@@ -69,18 +73,18 @@
             <li class="page-item"
                 th:classappend="${products.isFirst() ? 'disabled' : ''}">
                 <a class="page-link"
-                   th:href="@{'/products/?p='+ ${products.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef} + ${searchDef}}">Назад</a>
+                   th:href="@{'/products/?p='+ ${products.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef}}">Назад</a>
             </li>
 
             <li class="page-item" th:classappend="${products.getNumber() + 1 == i ? 'active' : ''}"
                 th:each="i : ${#numbers.sequence(1, products.getTotalPages())}">
-                <a class="page-link" th:text="${i}" th:href="@{'/products/?p=' + ${i} + ${filterDef} + ${searchDef}}"></a>
+                <a class="page-link" th:text="${i}" th:href="@{'/products/?p=' + ${i} + ${filterDef}}"></a>
             </li>
 
             <li class="page-item"
                 th:classappend="${ products.isLast() ? 'disabled' : ''}">
                 <a class="page-link"
-                   th:href="@{'/products/?p='+ ${products.nextOrLastPageable().getPageNumber() + 1} + ${filterDef} + ${searchDef}}">Вперед</a>
+                   th:href="@{'/products/?p='+ ${products.nextOrLastPageable().getPageNumber() + 1} + ${filterDef}}">Вперед</a>
             </li>
         </ul>
     </nav>

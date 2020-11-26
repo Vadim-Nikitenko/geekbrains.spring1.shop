@@ -1,5 +1,6 @@
 package com.geekbrains.july.market.controllers;
 
+import com.geekbrains.july.market.entities.Category;
 import com.geekbrains.july.market.entities.Product;
 import com.geekbrains.july.market.services.ProductsService;
 import com.geekbrains.july.market.utils.ProductFilter;
@@ -28,7 +29,6 @@ public class ProductsController {
         Page<Product> products = productsService.findAll(productFilter.getSpec(), pageNumber);
         model.addAttribute("products", products);
         model.addAttribute("filterDef", productFilter.getFilterDefinition().toString());
-        model.addAttribute("searchDef", productFilter.getFilterDefinition().toString());
         return "all_products";
     }
 
